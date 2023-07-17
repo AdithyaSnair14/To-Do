@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+{% block style %}
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 20px;
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    .form-container {
+        max-width: 400px;
+        margin-top: 20px;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    label {
+        display: block;
+        font-weight: bold;
+    }
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #ccc;
+    }
+    textarea {
+        width: 100%;
+        padding: 20px;
+        border: 2cap solid #ccc;
+    }
+    button {
+        margin-left: 500px;
+        background-color: #4caf4c;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+    }
+</style>
+{% endblock style %}
+{% block title %}
+Create Task
+{% endblock title %}
+{% block content %}
+<div class="container" style="margin-top:100px;">
+    <h1>Create New Task</h1>
+    <form action="{% url 'create_task' %}" method="post">
+        {% csrf_token %}
+        <label for="title">Title :</label>
+        <p><input type="text" name="title" placeholder="enter the title" required></p>
+        <br>
+        <label for="description">Description :</label>
+        <p><textarea name="description" placeholder="About Task" required></textarea></p>
+        <br>
+        <button type="submit">create</button>
+    </form>
+</div>
+{% endblock content %}
