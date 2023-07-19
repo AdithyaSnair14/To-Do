@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+{% block style %}
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 20px;
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    .form-container {
+        max-width: 400px;
+        margin-top: 20px;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    label {
+        display: block;
+        font-weight: bold;
+    }
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+    }
+    textarea {
+        width: 100%;
+        padding: 20px;
+    }
+    input[type="submit"] {
+        margin-left: 500px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding:10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+    }
+</style>
+{% endblock style %}
+{% block title %}
+Update Task
+{% endblock title %}
+{% block content %}
+<div class="container" style="margin-top: 100px;" >
+    <h1>Update Task</h1>
+    <form action="{% url 'update_task' task.id %}" method="post">
+        {% csrf_token %}
+        <label for="title">Title :</label>
+        <p><input type="text" name="title" value="{{task.title}}"></p>
+        <label for="description">Description</label>
+        <p><textarea name="description" required>{{task.description}}</textarea></p>
+        <label for="completed">Completed</label>
+        <p><input type="checkbox" name="completed" {% if task.completed %}checked{% endif %}></p>
+        <p><input type="submit" value="Update"></p>
+    </form>
+</div>
+{% endblock content %}  
